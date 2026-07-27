@@ -9,12 +9,11 @@ redirect_from:
 
 Welcome to my personal website!
 
-I am currently a Master's student at [Rice University](https://www.rice.edu/) in Houston, Texas. This site is where I share who I am, what I'm working on, and the things I learn along the way.
+I am currently a Master's student in Electrical and Computer Engineering at [Rice University](https://www.rice.edu/) in Houston, Texas. This site is where I share who I am, what I'm working on, and the things I learn along the way.
 
 About Me
 ======
-<!-- 在这里写你的自我介绍，例如：本科学校/专业、现在的研究或学习方向、感兴趣的领域等 -->
-I'm passionate about learning new things and building useful stuff. More details coming soon — this site is a work in progress!
+I’m interested in AI systems, efficient LLM inference, and GPU/TPU performance optimization. Recently, I’ve been learning about kernel optimization and kernel agents by reading source code, studying system implementations, and running hands-on experiments.
 
 Blog
 ======
