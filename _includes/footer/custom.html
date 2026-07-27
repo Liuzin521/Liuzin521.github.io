@@ -13,4 +13,45 @@
     await mermaid.run({querySelector:'code.language-mermaid'});
 </script>
 
+<!-- Bilingual post language toggle: wrap post content in
+     <div class="lang lang-en" markdown="1"> and <div class="lang lang-zh" markdown="1">.
+     A 中文/English switch appears automatically; choice is saved in localStorage. -->
+<style>
+.lang-switch { margin: 0 0 1.2em; }
+.lang-switch button {
+  border: 1px solid #ccc; background: #fff; color: #494e52;
+  padding: 4px 14px; font-size: 0.75em; cursor: pointer;
+}
+.lang-switch button:first-child { border-radius: 4px 0 0 4px; }
+.lang-switch button:last-child { border-radius: 0 4px 4px 0; margin-left: -1px; }
+.lang-switch button.active { background: #2f7fc1; border-color: #2f7fc1; color: #fff; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var blocks = document.querySelectorAll('.lang');
+  if (!blocks.length) return;
+  var bar = document.createElement('div');
+  bar.className = 'lang-switch';
+  bar.innerHTML = '<button data-lang="zh">中文</button><button data-lang="en">English</button>';
+  blocks[0].parentNode.insertBefore(bar, blocks[0]);
+  function setLang(l) {
+    document.querySelectorAll('.lang').forEach(function (el) {
+      el.style.display = el.classList.contains('lang-' + l) ? '' : 'none';
+    });
+    bar.querySelectorAll('button').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-lang') === l);
+    });
+    try { localStorage.setItem('blog-lang', l); } catch (e) {}
+  }
+  var saved;
+  try { saved = localStorage.getItem('blog-lang'); } catch (e) {}
+  if (!saved) saved = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+  bar.addEventListener('click', function (e) {
+    var l = e.target.getAttribute('data-lang');
+    if (l) setLang(l);
+  });
+  setLang(saved);
+});
+</script>
+
 <!-- end custom footer snippets -->
