@@ -73,3 +73,9 @@ I plan to use the [Blog](/year-archive/) section to write about my studies, proj
 Contact
 ======
 The best way to reach me is by email: **zenliu778@gmail.com**. You can also find me on [GitHub](https://github.com/Liuzin521).
+
+Visitors
+======
+<div style="max-width: 500px; margin-top: 1em;">
+  <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=15zTT-5QM-XyXz8DTig56k9aoXEw4eiCGamzc2u0eM8&cl=ffffff&w=a"></script>
+</div>
