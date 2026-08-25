@@ -41,8 +41,9 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands"
 ;
-/* Center images in post/page body text (markdown images are wrapped in <p>) */
-.page__content p > img {
+/* Center images in post/page body text (markdown images are wrapped in <p>).
+   Opt out per image with the theme's utility classes, e.g. ![](){: .align-left} */
+.page__content p > img:not(.align-left):not(.align-right) {
   display: block;
   margin-left: auto;
   margin-right: auto;
