@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var bar = document.createElement('div');
     bar.className = 'lang-switch';
     bar.innerHTML = '<button data-lang="zh">中文</button><button data-lang="en">English</button>';
-    var host = document.querySelector('#main') || blocks[0].parentNode;
+    var host = document.querySelector('#main .archive, #main .page__inner-wrap') || blocks[0].parentNode;
     host.insertBefore(bar, host.firstChild);
     bar.addEventListener('click', function (e) {
       var l = e.target.getAttribute('data-lang');
