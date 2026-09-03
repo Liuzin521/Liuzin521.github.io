@@ -1,5 +1,6 @@
 ---
 title: 'vLLM 源码追踪（一）· 一条请求的四次变身：从 LLM.generate() 到 Scheduler'
+title_en: 'Tracing vLLM Source (1) · Four Transformations of a Request: from LLM.generate() to the Scheduler'
 date: 2026-09-02
 permalink: /posts/2026/09/vllm-request-trace/
 tags:

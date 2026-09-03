@@ -34,10 +34,15 @@ document.addEventListener('DOMContentLoaded', function () {
   bar.className = 'lang-switch';
   bar.innerHTML = '<button data-lang="zh">中文</button><button data-lang="en">English</button>';
   blocks[0].parentNode.insertBefore(bar, blocks[0]);
+  var titleEl = document.querySelector('.page__title');
+  var titleZh = titleEl ? titleEl.textContent : null;
   function setLang(l) {
     document.querySelectorAll('.lang').forEach(function (el) {
       el.style.display = el.classList.contains('lang-' + l) ? '' : 'none';
     });
+    if (titleEl && titleEl.getAttribute('data-title-en')) {
+      titleEl.textContent = l === 'en' ? titleEl.getAttribute('data-title-en') : titleZh;
+    }
     bar.querySelectorAll('button').forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-lang') === l);
     });

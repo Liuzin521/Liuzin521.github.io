@@ -1,5 +1,6 @@
 ---
 title: '从 PagedAttention 原文走进 vLLM'
+title_en: 'From the PagedAttention Paper into vLLM'
 date: 2026-08-25
 permalink: /posts/2026/08/pagedattention-vllm/
 tags:
