@@ -29,32 +29,41 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   var blocks = document.querySelectorAll('.lang');
-  if (!blocks.length) return;
-  var bar = document.createElement('div');
-  bar.className = 'lang-switch';
-  bar.innerHTML = '<button data-lang="zh">中文</button><button data-lang="en">English</button>';
-  blocks[0].parentNode.insertBefore(bar, blocks[0]);
-  var titleEl = document.querySelector('.page__title');
-  var titleZh = titleEl ? titleEl.textContent : null;
+  var titled = document.querySelectorAll('[data-title-en]');
+  if (!blocks.length && !titled.length) return;
+  titled.forEach(function (el) { el.setAttribute('data-title-zh', el.textContent); });
+  var docTitleZh = document.title;
+  var pageTitleEl = document.querySelector('.page__title[data-title-en]');
   function setLang(l) {
     document.querySelectorAll('.lang').forEach(function (el) {
       el.style.display = el.classList.contains('lang-' + l) ? '' : 'none';
     });
-    if (titleEl && titleEl.getAttribute('data-title-en')) {
-      titleEl.textContent = l === 'en' ? titleEl.getAttribute('data-title-en') : titleZh;
+    titled.forEach(function (el) {
+      el.textContent = el.getAttribute(l === 'en' ? 'data-title-en' : 'data-title-zh');
+    });
+    if (pageTitleEl) {
+      document.title = l === 'en'
+        ? docTitleZh.replace(pageTitleEl.getAttribute('data-title-zh'), pageTitleEl.getAttribute('data-title-en'))
+        : docTitleZh;
     }
-    bar.querySelectorAll('button').forEach(function (b) {
+    document.querySelectorAll('.lang-switch button').forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-lang') === l);
     });
     try { localStorage.setItem('blog-lang', l); } catch (e) {}
   }
+  if (blocks.length) {
+    var bar = document.createElement('div');
+    bar.className = 'lang-switch';
+    bar.innerHTML = '<button data-lang="zh">中文</button><button data-lang="en">English</button>';
+    blocks[0].parentNode.insertBefore(bar, blocks[0]);
+    bar.addEventListener('click', function (e) {
+      var l = e.target.getAttribute('data-lang');
+      if (l) setLang(l);
+    });
+  }
   var saved;
   try { saved = localStorage.getItem('blog-lang'); } catch (e) {}
   if (!saved) saved = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
-  bar.addEventListener('click', function (e) {
-    var l = e.target.getAttribute('data-lang');
-    if (l) setLang(l);
-  });
   setLang(saved);
 });
 </script>
